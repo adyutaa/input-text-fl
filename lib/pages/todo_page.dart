@@ -11,8 +11,13 @@ class _ToDoPageState extends State<ToDoPage> {
   // controller to get access to what user typed in.
   TextEditingController myController = TextEditingController();
 
+// initialize String for greetUser
+  String greetingMessage = "";
+
   void greetUser() {
-    print(myController.text);
+    setState(() {
+    greetingMessage = "Hello, " + myController.text;
+    });
   }
 
   @override
@@ -24,6 +29,8 @@ class _ToDoPageState extends State<ToDoPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Text greeting message
+              Text(greetingMessage),
               TextField(
                 controller: myController,
                 decoration: InputDecoration(
@@ -31,7 +38,7 @@ class _ToDoPageState extends State<ToDoPage> {
                   hintText: "Type your name here...",
                 ),
               ),
-          
+
               // button
               ElevatedButton(onPressed: greetUser, child: Text("Tap"))
             ],
